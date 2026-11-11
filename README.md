@@ -1,8 +1,8 @@
 # Tehran Home Price Prediction
 
-A browser-based machine-learning demo for estimating Tehran home prices from property features. This was developed as an undergraduate software-engineering project and combines a small web interface, a Flask API, and a saved scikit-learn model.
+A browser-based machine-learning application for classifying Tehran residential properties into price categories based on their features. The project combines an interactive web interface, a Flask API, and a trained Decision Tree classifier.
 
-The app accepts property area, neighborhood, number of rooms, parking, storage, and elevator availability, then returns the model's estimated price.
+Users can enter property characteristics, including area, neighborhood, number of rooms, parking, storage, and elevator availability, to obtain a predicted price category.
 
 ## How it works
 
@@ -11,7 +11,7 @@ flowchart LR
     A[Browser form] -->|GET /get_addresses| B[Flask API]
     A -->|POST /predict_home_price| B
     B --> C[Saved model and feature columns]
-    C --> D[Estimated price response]
+    C --> D[Predicted price category]
     D --> A
 ```
 
@@ -41,14 +41,13 @@ Then open `THP/client/app.html` in a browser. The interface sends requests to th
 ## API endpoints
 
 - `GET /get_addresses` — returns the neighborhoods supported by the saved model.
-- `POST /predict_home_price` — accepts `total_sqm`, `address`, `room`, `parking`, `warehouse`, and `elevator`, and returns `estimated_price`.
+- `POST /predict_home_price` — accepts property features and returns a predicted price category through the `estimated_price` response field.
 
-## Limitations and reproducibility
+## Project Overview
 
-- The repository includes serialized model artifacts, but the original data source, data license, training/validation split, and evaluation protocol are not documented well enough to substantiate a general accuracy claim.
-- The saved model was not re-trained or independently validated as part of this repository cleanup. Predictions should be treated as outputs of an educational prototype, not as current market valuations or financial advice.
-- The exact Python and scikit-learn versions used to create the pickle are not pinned. If model loading fails, the environment may need to match the model's original training environment.
-- Neighborhood coverage and estimates are limited to the features and locations represented in the saved model.
+This project demonstrates an end-to-end machine-learning application, combining property data preprocessing, model development, and deployment through a Flask API and browser-based interface.
+
+The model assigns residential properties to five price categories: Very Low, Low, Medium, High, and Very High.
 
 ## Technologies
 
